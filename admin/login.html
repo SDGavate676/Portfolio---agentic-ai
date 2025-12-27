@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Admin Panel - Portfolio Management">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Admin Login - Portfolio Management</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <style>
+    .login-container {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+      padding: 20px;
+    }
+
+    .login-box {
+      background: white;
+      border-radius: 12px;
+      padding: 3rem 2rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      width: 100%;
+      max-width: 400px;
+      animation: slideInUp 0.6s ease;
+    }
+
+    body.dark-mode .login-box {
+      background: var(--card-dark);
+    }
+
+    .login-logo {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 3rem;
+    }
+
+    .login-box h1 {
+      text-align: center;
+      margin-bottom: 0.5rem;
+      font-size: 1.8rem;
+    }
+
+    .login-box p {
+      text-align: center;
+      opacity: 0.7;
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    body.dark-mode .form-group input {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--light-text);
+      border-color: var(--border-dark);
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: #6366f1;
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    }
+
+    .login-btn {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 1rem;
+    }
+
+    .login-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+    }
+
+    .login-btn:active {
+      transform: translateY(0);
+    }
+
+    .error-message {
+      background: rgba(239, 68, 68, 0.15);
+      color: #ef4444;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      display: none;
+    }
+
+    .success-message {
+      background: rgba(16, 185, 129, 0.15);
+      color: #10b981;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      display: none;
+    }
+
+    .back-link {
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+
+    .back-link a {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .back-link a:hover {
+      text-decoration: underline;
+    }
+
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .demo-credentials {
+      background: rgba(99, 102, 241, 0.1);
+      border: 1px solid var(--primary-color);
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      font-size: 0.85rem;
+      text-align: center;
+    }
+
+    body.dark-mode .demo-credentials {
+      border-color: var(--secondary-color);
+    }
+
+    .demo-credentials p {
+      margin: 0.3rem 0;
+    }
+
+    .demo-credentials strong {
+      color: var(--primary-color);
+    }
+
+    body.dark-mode .demo-credentials strong {
+      color: var(--secondary-color);
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-box">
+      <div class="login-logo">🔐</div>
+      <h1>Admin Panel</h1>
+      <p>Secure Login Required</p>
+
+      <div class="demo-credentials">
+        <p><strong>Demo Credentials:</strong></p>
+        <p>Email: admin@portfolio.com</p>
+        <p>Password: Admin123!</p>
+      </div>
+
+      <div class="error-message" id="error-message"></div>
+      <div class="success-message" id="success-message"></div>
+
+      <form id="login-form">
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            placeholder="admin@portfolio.com"
+            required 
+            autocomplete="email"
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input 
+            type="password" 
+            id="password" 
+            name="password" 
+            placeholder="Enter your password"
+            required 
+            autocomplete="current-password"
+          >
+        </div>
+
+        <button type="submit" class="login-btn">Login to Admin Panel</button>
+      </form>
+
+      <div class="back-link">
+        <a href="../index.html">← Back to Portfolio</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Simple authentication system with localStorage
+    class AdminAuth {
+      constructor() {
+        this.adminUsers = this.loadAdminUsers();
+        this.setupLoginForm();
+        this.checkIfAlreadyLoggedIn();
+      }
+
+      loadAdminUsers() {
+        const defaultUsers = [
+          {
+            id: 1,
+            email: 'admin@portfolio.com',
+            password: this.hashPassword('Admin123!'), // In production, use proper backend authentication
+            name: 'Portfolio Admin',
+            createdAt: new Date().toISOString()
+          }
+        ];
+
+        const savedUsers = localStorage.getItem('admin-users');
+        return savedUsers ? JSON.parse(savedUsers) : defaultUsers;
+      }
+
+      hashPassword(password) {
+        // Simple hash function - in production, use proper hashing on backend
+        let hash = 0;
+        for (let i = 0; i < password.length; i++) {
+          const char = password.charCodeAt(i);
+          hash = ((hash << 5) - hash) + char;
+          hash = hash & hash;
+        }
+        return Math.abs(hash).toString(36);
+      }
+
+      setupLoginForm() {
+        const form = document.getElementById('login-form');
+        form.addEventListener('submit', (e) => this.handleLogin(e));
+      }
+
+      checkIfAlreadyLoggedIn() {
+        const token = localStorage.getItem('admin-token');
+        if (token && this.validateToken(token)) {
+          window.location.href = 'dashboard.html';
+        }
+      }
+
+      handleLogin(e) {
+        e.preventDefault();
+
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+
+        const user = this.adminUsers.find(u => u.email === email);
+
+        if (!user) {
+          this.showError('User not found. Please check your email.');
+          return;
+        }
+
+        if (this.hashPassword(password) !== user.password) {
+          this.showError('Invalid password. Please try again.');
+          return;
+        }
+
+        // Create session token
+        const token = this.generateToken();
+        const session = {
+          token,
+          userId: user.id,
+          email: user.email,
+          name: user.name,
+          loginTime: new Date().toISOString(),
+          expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString() // 24 hours
+        };
+
+        localStorage.setItem('admin-token', JSON.stringify(session));
+        this.showSuccess('Login successful! Redirecting...');
+
+        setTimeout(() => {
+          window.location.href = 'dashboard.html';
+        }, 1500);
+      }
+
+      generateToken() {
+        return Math.random().toString(36).substr(2) + Date.now().toString(36);
+      }
+
+      validateToken(tokenJson) {
+        try {
+          const session = JSON.parse(tokenJson);
+          const expiresAt = new Date(session.expiresAt);
+          return expiresAt > new Date();
+        } catch (e) {
+          return false;
+        }
+      }
+
+      showError(message) {
+        const errorDiv = document.getElementById('error-message');
+        errorDiv.textContent = message;
+        errorDiv.style.display = 'block';
+        setTimeout(() => {
+          errorDiv.style.display = 'none';
+        }, 5000);
+      }
+
+      showSuccess(message) {
+        const successDiv = document.getElementById('success-message');
+        successDiv.textContent = message;
+        successDiv.style.display = 'block';
+      }
+    }
+
+    // Initialize authentication
+    document.addEventListener('DOMContentLoaded', () => {
+      new AdminAuth();
+
+      // Apply dark mode preference
+      const savedTheme = localStorage.getItem('portfolio-theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const isDark = savedTheme ? savedTheme === 'dark' : prefersDark;
+      
+      if (isDark) {
+        document.body.classList.add('dark-mode');
+      }
+    });
+  </script>
+</body>
+</html>
